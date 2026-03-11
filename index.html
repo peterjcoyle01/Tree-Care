@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1f6f43" />
+  <title>TreeCare Companion</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>TreeCare Companion</h1>
+      <p class="subtitle">A functional MVP for homeowner tree care reminders and upsells</p>
+    </div>
+    <button id="installBtn" class="ghost hidden">Install App</button>
+  </header>
+
+  <main class="layout">
+    <section class="panel hero">
+      <div>
+        <h2>Your tree care dashboard</h2>
+        <p>Track trees, get seasonal reminders, log work, and offer premium upgrades.</p>
+      </div>
+      <div class="hero-actions">
+        <button id="demoDataBtn">Load Demo Data</button>
+        <button id="clearBtn" class="danger">Clear All Data</button>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <section class="panel">
+        <h3>Add a tree</h3>
+        <form id="treeForm" class="form">
+          <label>
+            Tree name
+            <input type="text" id="treeName" placeholder="Front Maple" required />
+          </label>
+          <label>
+            Species
+            <select id="treeSpecies" required>
+              <option value="">Select a species</option>
+              <option>Maple</option>
+              <option>Elm</option>
+              <option>Spruce</option>
+              <option>Aspen</option>
+              <option>Birch</option>
+              <option>Apple</option>
+              <option>Crabapple</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Condition
+            <select id="treeCondition">
+              <option>Healthy</option>
+              <option>Monitor</option>
+              <option>Needs pruning</option>
+              <option>Storm damage</option>
+              <option>Pest concern</option>
+            </select>
+          </label>
+          <label>
+            Last pruning date
+            <input type="date" id="lastPruned" />
+          </label>
+          <label>
+            Watering frequency
+            <select id="watering">
+              <option>Weekly</option>
+              <option>Bi-weekly</option>
+              <option>Monthly</option>
+              <option>As needed</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea id="treeNotes" rows="3" placeholder="Deadwood on west side, keep an eye on root flare..."></textarea>
+          </label>
+          <button type="submit">Save tree</button>
+        </form>
+      </section>
+
+      <section class="panel premium-card">
+        <div class="premium-badge">Premium</div>
+        <h3>Upgrade pitch</h3>
+        <p>Turn this into passive-ish revenue with subscriptions for unlimited trees, advanced care schedules, risk scoring, and photo history.</p>
+        <ul>
+          <li>Free plan: up to 3 trees</li>
+          <li>Premium plan: unlimited trees</li>
+          <li>Suggested price: $6.99/mo or $59/yr</li>
+        </ul>
+        <button id="upgradeBtn">Unlock Premium</button>
+      </section>
+    </section>
+
+    <section class="grid-3">
+      <section class="panel stat">
+        <h4>Total trees</h4>
+        <div id="statTrees" class="stat-value">0</div>
+      </section>
+      <section class="panel stat">
+        <h4>Need attention</h4>
+        <div id="statAttention" class="stat-value">0</div>
+      </section>
+      <section class="panel stat">
+        <h4>Upcoming reminders</h4>
+        <div id="statReminders" class="stat-value">0</div>
+      </section>
+    </section>
+
+    <section class="grid-2">
+      <section class="panel">
+        <h3>My trees</h3>
+        <div id="treeList" class="card-list empty">No trees added yet.</div>
+      </section>
+
+      <section class="panel">
+        <h3>Seasonal checklist</h3>
+        <div class="form inline-form">
+          <label>
+            Season
+            <select id="seasonPicker">
+              <option>Spring</option>
+              <option>Summer</option>
+              <option>Fall</option>
+              <option>Winter</option>
+            </select>
+          </label>
+        </div>
+        <ul id="seasonChecklist" class="checklist"></ul>
+      </section>
+    </section>
+
+    <section class="grid-2">
+      <section class="panel">
+        <h3>Risk checker</h3>
+        <form id="riskForm" class="form">
+          <label><input type="checkbox" id="riskHanging" /> Hanging limbs</label>
+          <label><input type="checkbox" id="riskCracks" /> Trunk cracks</label>
+          <label><input type="checkbox" id="riskLean" /> New or worsening lean</label>
+          <label><input type="checkbox" id="riskFungus" /> Fungus at base</label>
+          <label><input type="checkbox" id="riskStorm" /> Recent storm damage</label>
+          <button type="submit">Check risk</button>
+        </form>
+        <div id="riskOutput" class="notice muted">Run the checker to see a recommendation.</div>
+      </section>
+
+      <section class="panel">
+        <h3>Revenue ideas built into app</h3>
+        <div class="notice">
+          <strong>Ways this MVP can make money:</strong>
+          <p>Premium subscriptions, lead generation for local inspections, affiliate links for watering bags and mulch, sponsored nursery listings, and paid photo reviews.</p>
+        </div>
+        <div class="notice">
+          <strong>Best next step:</strong>
+          <p>Connect a real backend, payments, push notifications, and a species/rules database.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
